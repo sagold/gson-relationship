@@ -1,0 +1,25 @@
+{
+  "name": "json-relationship",
+  "version": "1.0.0",
+  "description": "json relationship definition and implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test-unit; npm run test-integration",
+    "test-integration": "mocha --recursive 'test/integration/*.test.js' -R spec; exit 0",
+    "test-unit": "mocha --recursive 'test/unit/*.test.js' -R spec; exit 0",
+    "tdd": "watch 'npm run test-unit' lib/ app/ test/; exit 0"
+  },
+  "keywords": [],
+  "author": "Sascha Goldhofer <noreply@saschagoldhofer.de> (https://github.com/sagold/)",
+  "license": "ISC",
+  "dependencies": {
+    "@sagold/json-conform": "^1.0.0",
+    "@sagold/json-pointer": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "watch": "^1.0.1"
+  }
+}
