@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "json relationship definition and implementation",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sagold/json-relationship.git"
+  },
   "scripts": {
     "test": "npm run test-unit; npm run test-integration",
     "test-integration": "mocha --recursive 'test/integration/*.test.js' -R spec; exit 0",
