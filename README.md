@@ -6,8 +6,8 @@ This is a basic *json relationship* implementation following the minimal [specif
 relationship is established by
 
 ```js
-	var Relationship = require("json-library").relation.Relationship;
-	var relation = new Relationship(data, relationshipDefinition);
+const Relationship = require("json-relationship").Relationship;
+const relation = new Relationship(data, relationshipDefinition);
 ```
 
 The main function of a relationship is to
@@ -28,48 +28,50 @@ A relationship instance also includes helpers to
 The following example
 
 ```js
-	var Relationship = require("json-library").relation.Relationship;
+const Relationship = require("json-library").relation.Relationship;
 
-	var relation = new Relationship(data, "parent has_one:child through:parent_children as:workload");
-	relation.loadAll();
+const relation = new Relationship(data, "parent has_one:child through:parent_children as:workload");
+relation.loadAll();
 ```
 
 will change the json object
 
 ```js
-	{
-		parent: {
-			p_01: {},
-			p_02: {},
-		},
-		child: {
-			c_01: {id: "c_01"},
-			c_02: {id: "c_02"}
-		},
-		parent_children: {
-			p_01: ["c_02", "c_01"],
-			p_01: ["c_01"]
-		}
-	}
+{
+  parent: {
+    p_01: {},
+    p_02: {},
+  },
+  child: {
+    c_01: {id: "c_01"},
+    c_02: {id: "c_02"}
+  },
+  parent_children: {
+    p_01: ["c_02", "c_01"],
+    p_01: ["c_01"]
+  }
+}
 ```
 
 to
 
 ```js
-	{
-		parent: {
-			p_01: {
-				workload: [
-					{id: "c_02"},
-					{id: "c_01"}
-				]
-			},
-			p_02: {
-				workload: [
-					{id: "c_01"}
-				]
-			}
-		...
+{
+  parent: {
+    p_01: {
+      workload: [
+        {id: "c_02"},
+        {id: "c_01"}
+      ]
+    },
+    p_02: {
+      workload: [
+        {id: "c_01"}
+      ]
+    }
+  }
+  ...
+}
 ```
 
 For further details and examples check [createDefinitionObject](./createDefinitionObject.js) and the [unit tests
