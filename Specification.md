@@ -3,7 +3,7 @@
 A json relationship specification and implementation.
 
 
-## Specification #v0.1
+## Specification v1.0.0
 
 > A Json Relation defines a relationship of two Json Models
 

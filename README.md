@@ -2,7 +2,7 @@
 
 install via `npm i json-relationship`
 
-This is a basic *json relationship* implementation following the minimal [specification]("./specification"). A json
+This is a basic *json relationship* implementation following the minimal [specification]("./Specification.md"). A json
 relationship is established by
 
 ```js
@@ -28,7 +28,7 @@ A relationship instance also includes helpers to
 The following example
 
 ```js
-const Relationship = require("json-library").relation.Relationship;
+const Relationship = require("json-relationship").Relationship;
 
 const relation = new Relationship(data, "parent has_one:child through:parent_children as:workload");
 relation.loadAll();
@@ -74,7 +74,7 @@ to
 }
 ```
 
-For further details and examples check [createDefinitionObject](./createDefinitionObject.js) and the [unit tests
+For further details and examples check [createDefinitionObject](./lib/createDefinitionObject.js) and the [unit tests
 ]("https://github.com/sagold/json-library/tree/master/test/unit/relation/")
 
 
@@ -82,6 +82,6 @@ For further details and examples check [createDefinitionObject](./createDefiniti
 
 A relationship object may be also created by: `"[model] [[type]:[related] [mapping]:[path] (as:[alias])]"`. Using
 `createDefinitionObject(string)` a valid relationship Object is retrieved. For details see
-[createDefinitionObject]("./createDefinitionObject.js")
+[createDefinitionObject]("./lib/createDefinitionObject.js")
 
 
