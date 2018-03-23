@@ -11,8 +11,8 @@
     "test": "npm run test-unit; npm run test-integration",
     "test-integration": "mocha --recursive 'test/integration/*.test.js' -R spec; exit 0",
     "test-unit": "mocha --recursive 'test/unit/*.test.js' -R spec; exit 0",
-    "tdd": "watch 'npm run test-unit' lib/ app/ test/; exit 0",
-    "lint": "eslint ."
+    "tdd": "watch 'mocha --recursive 'test/v2/*.test.js' -R spec; exit 0' v2/ test/v2; exit 0",
+    "lint": "eslint v2 test/v2"
   },
   "keywords": [],
   "author": "Sascha Goldhofer <noreply@saschagoldhofer.de> (https://github.com/sagold/)",
