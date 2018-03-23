@@ -6,6 +6,10 @@
     commonjs: true
   },
 
+  globals: {
+    console: false
+  },
+
   plugins: [
     'promise'
   ],
@@ -24,7 +28,7 @@
     'arrow-body-style': [2, 'as-needed', {  // http://eslint.org/docs/rules/arrow-body-style
       requireReturnForObjectLiteral: false
     }],
-    'arrow-parens': [2, 'as-needed'],       // http://eslint.org/docs/rules/arrow-parens
+    'arrow-parens': [2, "always"],          // http://eslint.org/docs/rules/arrow-parens
     'arrow-spacing': [2, {                  // http://eslint.org/docs/rules/arrow-spacing
       before: true,
       after: true

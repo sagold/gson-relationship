@@ -1,41 +1,11 @@
 const { expect } = require("chai");
-const normalize = require("../../v2/normalize");
+const join = require("../../v2/join");
 
 
-describe("normalize", () => {
+describe("join", () => {
 
-    it("should normalize 1:1 relationship (no foreign-pk)", () => {
-        const result = normalize({
-            model: {
-                a: {
-                    id: "a",
-                    child: {
-                        id: "large"
-                    }
-                },
-                b: {
-                    id: "b",
-                    child: {
-                        id: "small"
-                    }
-                },
-                c: {
-                    id: "c",
-                    child: {
-                        id: "small"
-                    }
-                }
-            }
-        }, {
-            type: "1:1",
-            model: "/model",
-            alias: "/child",
-            reference: "/sizes",
-            pivot: "/model_sizes",
-            move: true
-        });
-
-        expect(result).to.deep.eq({
+    it("should join 1:1 relationship (no foreign-pk)", () => {
+        const result = join({
             model: {
                 a: {
                     id: "a"
@@ -60,11 +30,72 @@ describe("normalize", () => {
                     id: "small"
                 }
             ]
+        }, {
+            type: "1:1",
+            model: "/model",
+            alias: "/child",
+            reference: "/sizes",
+            pivot: "/model_sizes",
+            move: true
+        });
+
+        expect(result).to.deep.eq({
+            model: {
+                a: {
+                    id: "a",
+                    child: {
+                        id: "large"
+                    }
+                },
+                b: {
+                    id: "b",
+                    child: {
+                        id: "small"
+                    }
+                },
+                c: {
+                    id: "c",
+                    child: {
+                        id: "small"
+                    }
+                }
+            }
         });
     });
 
-    it("should normalize 1:n relationship", () => {
-        const result = normalize({
+
+    it("should join 1:n relationship", () => {
+        const result = join({
+            model: {
+                a: {
+                    id: "a"
+                },
+                b: {
+                    id: "b"
+                }
+            },
+            model_sizes: {
+                a: ["large", "small"],
+                b: ["small"]
+            },
+            sizes: {
+                large: {
+                    id: "large"
+                },
+                small: {
+                    id: "small"
+                }
+            }
+        }, {
+            type: "1:n",
+            model: "/model",
+            alias: "/children",
+            reference: "/sizes",
+            pivot: "/model_sizes",
+            move: true
+        });
+
+        expect(result).to.deep.eq({
             model: {
                 a: {
                     id: "a",
@@ -86,36 +117,7 @@ describe("normalize", () => {
                     }
                 }
             }
-        }, {
-            type: "1:n",
-            model: "/model",
-            alias: "/children",
-            reference: "/sizes",
-            pivot: "/model_sizes",
-            move: true
-        });
-
-        expect(result).to.deep.eq({
-            model: {
-                a: {
-                    id: "a"
-                },
-                b: {
-                    id: "b"
-                }
-            },
-            model_sizes: {
-                a: ["large", "small"],
-                b: ["small"]
-            },
-            sizes: {
-                large: {
-                    id: "large"
-                },
-                small: {
-                    id: "small"
-                }
-            }
         });
     });
+
 });

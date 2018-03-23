@@ -11,7 +11,7 @@
     "test": "npm run test-unit; npm run test-integration",
     "test-integration": "mocha --recursive 'test/integration/*.test.js' -R spec; exit 0",
     "test-unit": "mocha --recursive 'test/unit/*.test.js' -R spec; exit 0",
-    "tdd": "watch 'mocha --recursive 'test/v2/*.test.js' -R spec; exit 0' v2/ test/v2; exit 0",
+    "tdd": "watch 'mocha --recursive 'test/v2/*.test.js' -R spec; exit 0' v2 test/v2; exit 0",
     "lint": "eslint v2 test/v2"
   },
   "keywords": [],
@@ -19,7 +19,9 @@
   "license": "ISC",
   "dependencies": {
     "@sagold/json-conform": "^1.0.0",
-    "@sagold/json-pointer": "^1.0.1"
+    "@sagold/json-pointer": "^1.0.1",
+    "gson-pointer": "^3.4.1",
+    "gson-query": "^1.2.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

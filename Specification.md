@@ -27,7 +27,7 @@ A json relationship specification and implementation.
 ```js
 // Model
 {
-	"primary key": tupel
+  "primary key": tupel
 }
 ```
 
@@ -39,19 +39,19 @@ A json relationship specification and implementation.
 ```js
 // Object-Model:
 {
-	// primary_key (entry) for following Tupel
-	"entry": {
-		// Attributes
-		"name": "name of tupel"
-	}
+  // primary_key (entry) for following Tupel
+  "entry": {
+    // Attributes
+    "name": "name of tupel"
+  }
 }
 // Array-Model:
 [
-	// primary_key (0) for following Tupel
-	{
-		// Attributes
-		"name": "name of tupel"
-	}
+  // primary_key (0) for following Tupel
+  {
+    // Attributes
+    "name": "name of tupel"
+  }
 ]
 ```
 
@@ -62,11 +62,11 @@ A json relationship specification and implementation.
 ```js
 // Pivot for has_one relationships
 {
-	"pk_0": "fpk_0" // foreign primary key
+  "pk_0": "fpk_0" // foreign primary key
 }
 // Pivot for has_many relationships
 {
-	"pk_0": ["fpk_0", "fpk_1"] // foreign primary keys
+  "pk_0": ["fpk_0", "fpk_1"] // foreign primary keys
 }
 ```
 
@@ -79,10 +79,10 @@ The value of a *primary key* within a *pivot-table* is refered as *foreign keyse
 
 ```
 {
-	"model": parentJsonModel,
-	"references": relatedJsonModel,
-	"type": ["has_one", "has_many"],
-	"through": mappingObject
-	"alias": propertyNameOfRelationship
+  "model": jsonModel,
+  "references": relatedJsonModel,
+  "type": ["1:1", "1:n"],
+  "pivot": mappingObject
+  "alias": pathFromTupelToRelation
 }
 ```
