@@ -130,6 +130,7 @@ const data = {
   }
 }
 
+// normalize the table as described in 'examples'
 const normalized = normalize(data, {
     type: "1:n",
     model: "server",
@@ -137,12 +138,16 @@ const normalized = normalize(data, {
     pivot: "server_services",
     reference: "services"
 });
-const inverted = invertPivot(normalized, "server_services");
+
+// we need to invert the mapping table for our purpose
+const inverted = invertPivot(normalized, "server_services", "services_server");
+
+// then rebuild the data with the inverted relationship
 const services = join(inverted, {
     type: "1:n",
     model: "services",
     alias: "server",
-    pivot: "server_services",
+    pivot: "services_server",
     reference: "server"
 });
 ```
@@ -168,4 +173,28 @@ which results in `services` structured as
   }
 }
 ```
+
+
+## API
+
+| method                                | description
+| ------------------------------------- | -------------------------------------------------------------
+| normalize(data, rel) -> object        | build a unlinked json-data model containing pivot-table and references
+| join(data, rel) -> object             | build a linked json-data, resolving pivot and reference-model
+| invertPivot(data, from, to) -> *data  | invert a pivot table (1:1, 1:n). May change relationtype from 1:1 to 1:n
+
+
+### normalize
+
+> normalize(data:object, rel:object) -> :object
+
+
+### join
+
+> join(data:object, rel:object) -> :object
+
+
+### invertPivot
+
+> invertPivot(data:object, from:string, to:string) -> :object
 
