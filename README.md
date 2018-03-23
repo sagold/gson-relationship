@@ -2,18 +2,14 @@
 
 > This is a basic *json relationship* implementation following the minimal [specification](./Specification.md).
 
+- Quick transformation of nested json-data
+- reusable json-objects within a json-document (dry)
+
 install via `npm i json-relationship --save`
 
-- [Tasks](#tasks)
 - [Examples](#examples)
 - [Usage Examples](#usage-examples)
 - [API](#api)
-
-
-## Tasks
-
-- Quick transformation of nested json-data
-- reusable json-objects within a json-document (dry)
 
 
 ## Examples
@@ -107,7 +103,7 @@ and vice versa
 
 ## Usage example
 
-> Transform the above example having a server-service relationship to service-server relationship
+> Transforms the above example having a server-service relationship to service-server relationship
 
 ```js
 const { join, normalize, invertPivot } = require('json-relationship');
