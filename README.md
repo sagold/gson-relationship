@@ -4,6 +4,11 @@
 
 install via `npm i json-relationship --save`
 
+- [Tasks](#tasks)
+- [Examples](#examples)
+- [Usage Examples](#usage_examples)
+- [API](#api)
+
 
 ## Tasks
 
@@ -13,7 +18,7 @@ install via `npm i json-relationship --save`
 
 ## Examples
 
-### `1:1` releationship
+### `1:1` relationship
 
 Normalize nested json-objects, like
 
@@ -54,7 +59,7 @@ to the following normalized representation
 and vice versa
 
 
-### `1:n` releationship
+### `1:n` relationship
 
 Normalize nested json-objects, like
 
@@ -92,7 +97,7 @@ to the following normalized representation
   },
   services: {
     serviceA: { name: "A" },
-    serviceB: { name: "B" },
+    serviceB: { name: "B" }
   }
 }
 ```
@@ -100,5 +105,67 @@ to the following normalized representation
 and vice versa
 
 
-## Usage
+## Usage example
+
+> Transform the above example having a server-service relationship to service-server relationship
+
+```js
+const { join, normalize, invertPivot } = require('json-relationship');
+
+const data = {
+  server: {
+    serverA: {
+      id: "serverA",
+      services: {
+        serviceA: { name: "A" },
+        serviceB: { name: "B" }
+      }
+    },
+    serverB: {
+      id: "serverB",
+      services: {
+        serviceB: { name: "B" }
+      }
+    }
+  }
+}
+
+const normalized = normalize(data, {
+    type: "1:n",
+    model: "server",
+    alias: "services",
+    pivot: "server_services",
+    reference: "services"
+});
+const inverted = invertPivot(normalized, "server_services");
+const services = join(inverted, {
+    type: "1:n",
+    model: "services",
+    alias: "server",
+    pivot: "server_services",
+    reference: "server"
+});
+```
+
+which results in `services` structured as
+
+```js
+{
+  services: {
+    serviceA: {
+      name: "A",
+      server: {
+        serverA: { id: "serverA" }
+      }
+    },
+    serviceB: {
+      name: "B",
+      server: {
+        serverA: { id: "serverA" },
+        serverB: { id: "serverB" }
+      }
+    }
+  }
+}
+```
 
