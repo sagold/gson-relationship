@@ -2,7 +2,7 @@
 
 install via `npm i json-relationship`
 
-This is a basic *json relationship* implementation following the minimal [specification]("./Specification.md"). A json
+This is a basic *json relationship* implementation following the minimal [specification](./Specification.md). A json
 relationship is established by
 
 ```js
