@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const join = require("../../v2/join");
+const join = require("../../lib/join");
 
 
 describe("join", () => {

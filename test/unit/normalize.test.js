@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const normalize = require("../../v2/normalize");
+const normalize = require("../../lib/normalize");
 
 
 describe("normalize", () => {

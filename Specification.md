@@ -1,9 +1,9 @@
-# Json Relation
+# Json Relationship
 
 A json relationship specification and implementation.
 
 
-## Specification v1.0.0
+## Specification
 
 > A Json Relation defines a relationship of two Json Models
 
