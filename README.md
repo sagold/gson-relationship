@@ -6,7 +6,7 @@ install via `npm i json-relationship --save`
 
 - [Tasks](#tasks)
 - [Examples](#examples)
-- [Usage Examples](#usage_examples)
+- [Usage Examples](#usage-examples)
 - [API](#api)
 
 
