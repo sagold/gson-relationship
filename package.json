@@ -1,6 +1,6 @@
 {
   "name": "gson-relationship",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Transform json-data using relational concepts",
   "main": "lib/index.js",
   "repository": {
