@@ -73,8 +73,7 @@ describe("consistency", () => {
             model: "feet",
             reference: "socks",
             pivot: "feet_sock",
-            alias: "socks",
-            referenceId: "name" // requires a reference-id or the pivot would be reverted as an array (no known id)
+            alias: "socks"
         };
         const input = {
             feet: {
@@ -107,9 +106,8 @@ describe("consistency", () => {
             type: "1:n",
             model: "feet",
             reference: "socks",
-            pivot: "feet_sock",
-            alias: "sock",
-            referenceId: "name" // requires a reference-id or the pivot would be reverted as an array (no known id)
+            pivot: "feet_socks",
+            alias: "socks"
         };
         const input = {
             feet: {
@@ -130,7 +128,7 @@ describe("consistency", () => {
         };
 
         const normalized = normalize(input, relationship);
-        expect(normalized.feet_sock).to.deep.eq({
+        expect(normalized.feet_socks).to.deep.eq({
             large: ["red", "yellow"],
             medium: ["yellow"]
         });

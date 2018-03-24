@@ -131,11 +131,11 @@ const data = {
 
 // normalize the table as described in 'examples'
 const normalized = normalize(data, {
-    type: "1:n",
-    model: "server",
-    alias: "services",
-    pivot: "server_services",
-    reference: "services"
+  type: "1:n",
+  model: "server",
+  alias: "services",
+  pivot: "server_services",
+  reference: "services"
 });
 
 // we need to invert the mapping table for our purpose
@@ -143,11 +143,11 @@ const inverted = invertPivot(normalized, "server_services", "services_server");
 
 // then rebuild the data with the inverted relationship
 const services = join(inverted, {
-    type: "1:n",
-    model: "services",
-    alias: "server",
-    pivot: "services_server",
-    reference: "server"
+  type: "1:n",
+  model: "services",
+  alias: "server",
+  pivot: "services_server",
+  reference: "server"
 });
 ```
 
@@ -223,9 +223,9 @@ A **1:1 pivot** is a simple map between a parent- and a target-property
 
 ```js
 {
-    pivot: {
-        server: "serviceOfServer"
-    }
+  pivot: {
+    server: "serviceOfServer"
+  }
 }
 ```
 
@@ -233,9 +233,9 @@ A **1:1 pivot** is a simple map between a parent- and a target-property
 
 ```js
 {
-    pivot: {
-        serviceOfServer: "server"
-    }
+  pivot: {
+    serviceOfServer: "server"
+  }
 }
 ```
 
@@ -243,9 +243,9 @@ A **1:1 pivot** is a simple map between a parent- and a target-property
 
 ```js
 {
-    service_server: {
-        serviceOfServer: "server"
-    }
+  service_server: {
+    serviceOfServer: "server"
+  }
 }
 ```
 
@@ -253,9 +253,9 @@ A **1:n pivot** is a map between a parent-property and multiple target-propertie
 
 ```js
 {
-    pivot: {
-        server: ["serviceA", "serviceB"]
-    }
+  pivot: {
+    server: ["serviceA", "serviceB"]
+  }
 }
 ```
 
@@ -263,10 +263,10 @@ A **1:n pivot** is a map between a parent-property and multiple target-propertie
 
 ```js
 {
-    service_servers: {
-        serviceA: ["server"],
-        serviceB: ["server"]
-    }
+  service_servers: {
+    serviceA: ["server"],
+    serviceB: ["server"]
+  }
 }
 ```
 
@@ -275,10 +275,10 @@ invertion a pivot results in a 1:n map, which may be recogniced by an array for 
 
 ```js
 {
-    pivot: {
-        serviceA: "server"
-        serviceB: "server"
-    }
+  pivot: {
+    serviceA: "server"
+    serviceB: "server"
+  }
 }
 ```
 
@@ -286,9 +286,9 @@ invertion a pivot results in a 1:n map, which may be recogniced by an array for 
 
 ```js
 {
-    pivot: {
-        server: ["serviceA", "serviceB"]
-    }
+  pivot: {
+    server: ["serviceA", "serviceB"]
+  }
 }
 ```
 
