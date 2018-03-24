@@ -173,24 +173,38 @@ which results in `services` structured as
 
 ## API
 
+### methods
+
 | method                                | description
 | ------------------------------------- | -------------------------------------------------------------
-| normalize(data, rel) -> object        | build a unlinked json-data model containing pivot-table and references
-| join(data, rel) -> object             | build a linked json-data, resolving pivot and reference-model
-| invertPivot(data, from, to) -> *data  | invert a pivot table (1:1, 1:n). May change relationtype from 1:1 to 1:n
+| normalize(data, rel) : object         | build a unlinked json-data model containing pivot-table and references
+| join(data, rel) : object              | build a linked json-data, resolving pivot and reference-model
+| invertPivot(data, from, to) : object  | invert a pivot table (1:1, 1:n). May change relationtype from 1:1 to 1:n
+
+
+### relation description
+
+| property               | description
+| ---------------------- | -------------------------------------------------------------
+| model:string           | json-pointer to parent tupels, e.g. `/data/server`
+| reference:string       | json-pointer to related tupels e.g. `/data/services`
+| pivot:string           | json-pointer to pivot table, mapping _model-reference_ e.g. `/data/pivot`
+| alias:string           | json-pointer **within** model tupel to related tupel, e.g. `/services`
+| move:string            | Removes associated relationships and pivots from model. defaults to `true`.
+| referenceId:string     | optional: change foreign key of a related tupel (property within tupel), e.g. `/id`
 
 
 ### normalize
 
-> normalize(data:object, rel:object) -> :object
+> normalize(data:object, relationship:object) : object
 
 
 ### join
 
-> join(data:object, rel:object) -> :object
+> join(data:object, relationship:object) : object
 
 
 ### invertPivot
 
-> invertPivot(data:object, from:string, to:string) -> :object
+> invertPivot(data:object, from:string, to:string = from) : object
 
