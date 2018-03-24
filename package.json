@@ -1,11 +1,11 @@
 {
-  "name": "json-relationship",
+  "name": "gson-relationship",
   "version": "1.0.1",
-  "description": "json relationship definition and implementation",
+  "description": "Transform json-data using relational concepts",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sagold/json-relationship.git"
+    "url": "https://github.com/sagold/gson-relationship.git"
   },
   "scripts": {
     "test": "npm run test-unit; npm run test-integration",
@@ -14,12 +14,10 @@
     "tdd": "watch 'npm run test-unit' lib test/unit; exit 0",
     "lint": "eslint lib test"
   },
-  "keywords": [],
+  "keywords": ["json relationship", "json", "json tranformation", "gson", "data transformation", "relation-extraction"],
   "author": "Sascha Goldhofer <noreply@saschagoldhofer.de> (https://github.com/sagold/)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@sagold/json-conform": "^1.0.0",
-    "@sagold/json-pointer": "^1.0.1",
     "gson-pointer": "^3.4.1",
     "gson-query": "^1.2.1"
   },
