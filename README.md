@@ -176,38 +176,121 @@ which results in `services` structured as
 
 ## API
 
+### relation description
+
+| property                 | description
+| ------------------------ | ----------------------------------------------------------------------------
+| `model`:string           | json-pointer to parent tupels, e.g. `/data/server`
+| `reference`:string       | json-pointer to related tupels e.g. `/data/services`
+| `pivot`:string           | json-pointer to pivot table, mapping _model-reference_ e.g. `/data/pivot`
+| `alias`:string           | json-pointer **within** model tupel to related tupel, e.g. `/services`
+| `move`:boolean           | Removes associated relationships and pivots from model. defaults to `true`.
+| `referenceId`:string     | **optional** change foreign key of a related tupel (property **within** tupel), e.g. `/id`
+
+#### move-option
+
+> Set this option to `true`, to keep the original data and additionally construct the target-models.
+
+Per default `move = true`, which will remove
+
+- all `pivot` and `reference` objects on a `join` operation
+- the `alias` property and all its contained `references` on a `normalize` operation
+
+
 ### methods
 
 | method                                | description
 | ------------------------------------- | -------------------------------------------------------------
-| normalize(data, rel) : object         | build a unlinked json-data model containing pivot-table and references
-| join(data, rel) : object              | build a linked json-data, resolving pivot and reference-model
-| invertPivot(data, from, to) : object  | invert a pivot table (1:1, 1:n). May change relationtype from 1:1 to 1:n
+| `normalize`(data, rel):object           | build a unlinked json-data model containing pivot-table and references
+| `join`(data, rel):object                | build a linked json-data, resolving pivot and reference-model
+| `invertPivot`(data, from, to):object    | invert a pivot table (1:1, 1:n). May change relationtype from 1:1 to 1:n
 
-
-### relation description
-
-| property               | description
-| ---------------------- | -------------------------------------------------------------
-| model:string           | json-pointer to parent tupels, e.g. `/data/server`
-| reference:string       | json-pointer to related tupels e.g. `/data/services`
-| pivot:string           | json-pointer to pivot table, mapping _model-reference_ e.g. `/data/pivot`
-| alias:string           | json-pointer **within** model tupel to related tupel, e.g. `/services`
-| move:string            | Removes associated relationships and pivots from model. defaults to `true`.
-| referenceId:string     | optional: change foreign key of a related tupel (property within tupel), e.g. `/id`
-
-
-### normalize
+#### normalize
 
 > normalize(data:object, relationship:object) : object
 
 
-### join
+#### join
 
 > join(data:object, relationship:object) : object
 
 
-### invertPivot
+#### invertPivot
 
 > invertPivot(data:object, from:string, to:string = from) : object
+
+A **1:1 pivot** is a simple map between a parent- and a target-property
+
+```js
+{
+    pivot: {
+        server: "serviceOfServer"
+    }
+}
+```
+
+`invertPivot(data, "/pivot")` will reverse the mapping, resulting in
+
+```js
+{
+    pivot: {
+        serviceOfServer: "server"
+    }
+}
+```
+
+`invertPivot(data, "/pivot", "/service_server")` will move the pivot location to the path specified in the `to`-argument
+
+```js
+{
+    service_server: {
+        serviceOfServer: "server"
+    }
+}
+```
+
+A **1:n pivot** is a map between a parent-property and multiple target-properties
+
+```js
+{
+    pivot: {
+        server: ["serviceA", "serviceB"]
+    }
+}
+```
+
+`invertPivot(data, "/pivot", "/service_servers")` will reverse the mapping, resulting in
+
+```js
+{
+    service_servers: {
+        serviceA: ["server"],
+        serviceB: ["server"]
+    }
+}
+```
+
+A **1:1 pivot may be inverted to 1:n pivot**. If the original pivot maps multiple tupels to the same target, the
+invertion a pivot results in a 1:n map, which may be recogniced by an array for each model key:
+
+```js
+{
+    pivot: {
+        serviceA: "server"
+        serviceB: "server"
+    }
+}
+```
+
+`invertPivot(data, "/pivot")` will create the following `1:n` pivot
+
+```js
+{
+    pivot: {
+        server: ["serviceA", "serviceB"]
+    }
+}
+```
+
+
 
