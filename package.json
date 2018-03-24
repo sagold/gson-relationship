@@ -14,7 +14,14 @@
     "tdd": "watch 'npm run test-unit' lib test/unit; exit 0",
     "lint": "eslint lib test"
   },
-  "keywords": ["json relationship", "json", "json tranformation", "gson", "data transformation", "relation-extraction"],
+  "keywords": [
+    "json relationship",
+    "json",
+    "json tranformation",
+    "gson",
+    "data transformation",
+    "relation-extraction"
+  ],
   "author": "Sascha Goldhofer <noreply@saschagoldhofer.de> (https://github.com/sagold/)",
   "license": "MIT",
   "dependencies": {
